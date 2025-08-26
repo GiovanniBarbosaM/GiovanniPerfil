@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Giovanni Barbosa - Desenvolvedor e Designer">
+    <meta name="keywords" content="Giovanni Barbosa, desenvolvedor, designer, portfólio, projetos">
+    <meta name="author" content="Giovanni Barbosa">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Giovanni Barbosa - Portfólio">
+    <meta property="og:description" content="Conheça meus projetos, certificados e experiências">
+    <meta property="og:image" content="./assets/images/perfil/avatar.jpg">
+    <meta property="og:url" content="https://giovannibarbosa.com">
+    <meta property="og:type" content="website">
+    
+    <title>Giovanni Barbosa - Portfólio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-firestore-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-storage-compat.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="carregamento" class="loading-screen">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="navegarPara('inicio')">
+                <i class="fas fa-code"></i>
+                Giovanni Barbosa
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#inicio" class="nav-link active" data-secao="inicio">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./paginas/projetos.html" class="nav-link" data-secao="projetos">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Projetos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./paginas/galeria.html" class="nav-link" data-secao="galeria">
+                        <i class="fas fa-images"></i>
+                        <span>Galeria</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./paginas/certificados.html" class="nav-link" data-secao="certificados">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificados</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./paginas/contato.html" class="nav-link" data-secao="contato">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-background">
+            <div class="particles" id="particles"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Olá, eu sou
+                    <span class="gradient-text">Giovanni Barbosa</span>
+                </h1>
+                <p class="hero-subtitle" id="typed-text">Desenvolvedor Full-Stack & Designer</p>
+                <p class="hero-description">
+                    Transformo ideias em experiências digitais incríveis. 
+                    Especializado em desenvolvimento web moderno e design intuitivo.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="./paginas/projetos.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Ver Meus Projetos
+                    </a>
+                    <a href="./paginas/contato.html" class="btn btn-secondary">
+                        <i class="fas fa-message"></i>
+                        Entre em Contato
+                    </a>
+                </div>
+                
+                <div class="redes-sociais">
+                    <a href="#" class="social-link" data-tooltip="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" data-tooltip="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" data-tooltip="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" data-tooltip="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="image-container">
+                    <img src="./assets/images/perfil/avatar.jpg" alt="Giovanni Barbosa" id="foto-perfil">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <p>Role para baixo</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">01</span>
+                Sobre Mim
+            </h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-intro">
+                        Sou um desenvolvedor apaixonado por tecnologia e inovação, 
+                        sempre buscando criar soluções que fazem a diferença.
+                    </p>
+                    
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <h4>Experiência</h4>
+                                <p>+3 anos desenvolvendo soluções web</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h4>Formação</h4>
+                                <p>Tecnologia da Informação</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Localização</h4>
+                                <p>São Paulo, Brasil</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-container">
+                    <h3>Principais Tecnologias</h3>
+                    <div class="skills-grid" id="skills-grid">
+                        <!-- Skills serão carregadas dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="estatisticas" class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Projetos Concluídos</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Certificações</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">Clientes Satisfeitos</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="services">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">02</span>
+                Meus Serviços
+            </h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Criação de sites e aplicações web modernas, responsivas e otimizadas para performance.</p>
+                    <div class="service-tags">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>React</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Apps Mobile</h3>
+                    <p>Desenvolvimento de aplicativos mobile nativos e híbridos para iOS e Android.</p>
+                    <div class="service-tags">
+                        <span>React Native</span>
+                        <span>Flutter</span>
+                        <span>Ionic</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Design de interfaces intuitivas e experiências de usuário que convertem e encantam.</p>
+                    <div class="service-tags">
+                        <span>Figma</span>
+                        <span>Adobe XD</span>
+                        <span>Prototyping</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Backend & APIs</h3>
+                    <p>Desenvolvimento de APIs robustas e sistemas backend escaláveis e seguros.</p>
+                    <div class="service-tags">
+                        <span>Node.js</span>
+                        <span>Python</span>
+                        <span>Firebase</span>
+                        <span>PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Giovanni Barbosa</h3>
+                    <p>Desenvolvedor Full-Stack & Designer</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="./paginas/projetos.html">Projetos</a>
+                    <a href="./paginas/galeria.html">Galeria</a>
+                    <a href="./paginas/certificados.html">Certificados</a>
+                    <a href="./paginas/contato.html">Contato</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Giovanni Barbosa. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <i class="fas fa-heart"></i> e muita dedicação</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Files -->
+    <script src="./assets/js/firebase-config.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/navegacao.js"></script>
+</body>
+</html>

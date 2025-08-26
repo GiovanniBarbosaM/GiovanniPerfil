@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça os projetos desenvolvidos por Giovanni Barbosa - Desenvolvedor Full-Stack">
+    <meta name="keywords" content="projetos, desenvolvimento web, aplicações, Giovanni Barbosa">
+    
+    <title>Projetos - Giovanni Barbosa</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-firestore-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-storage-compat.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="carregamento" class="loading-screen">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Carregando projetos...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='../index.html'">
+                <i class="fas fa-code"></i>
+                Giovanni Barbosa
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./projetos.html" class="nav-link active">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Projetos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./galeria.html" class="nav-link">
+                        <i class="fas fa-images"></i>
+                        <span>Galeria</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./certificados.html" class="nav-link">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificados</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./contato.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="page-title">
+                    <span class="gradient-text">Meus Projetos</span>
+                </h1>
+                <p class="page-subtitle">
+                    Conheça os projetos que desenvolvi com paixão e dedicação
+                </p>
+                
+                <div class="breadcrumb">
+                    <a href="../index.html">
+                        <i class="fas fa-home"></i>
+                        Início
+                    </a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Projetos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros -->
+    <section class="filtros-projetos">
+        <div class="container">
+            <div class="filtros-container">
+                <button class="filtro-btn active" data-filtro="todos">
+                    <i class="fas fa-th"></i>
+                    Todos os Projetos
+                </button>
+                <button class="filtro-btn" data-filtro="web">
+                    <i class="fas fa-globe"></i>
+                    Web Development
+                </button>
+                <button class="filtro-btn" data-filtro="mobile">
+                    <i class="fas fa-mobile-alt"></i>
+                    Mobile Apps
+                </button>
+                <button class="filtro-btn" data-filtro="design">
+                    <i class="fas fa-palette"></i>
+                    UI/UX Design
+                </button>
+                <button class="filtro-btn" data-filtro="backend">
+                    <i class="fas fa-server"></i>
+                    Backend/APIs
+                </button>
+            </div>
+            
+            <div class="busca-container">
+                <div class="search-box">
+                    <input type="text" id="busca-projetos" placeholder="Buscar projetos...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Projetos -->
+    <section class="projetos-grid-section">
+        <div class="container">
+            <div class="projetos-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-projetos">0</span>
+                    <span class="stat-label">Projetos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="projetos-web">0</span>
+                    <span class="stat-label">Web</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="projetos-mobile">0</span>
+                    <span class="stat-label">Mobile</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="projetos-design">0</span>
+                    <span class="stat-label">Design</span>
+                </div>
+            </div>
+
+            <div class="projetos-grid" id="projetos-grid">
+                <!-- Projetos serão carregados dinamicamente -->
+                <div class="loading-projetos">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Carregando projetos...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paginação -->
+            <div class="paginacao" id="paginacao">
+                <!-- Controles de paginação serão gerados dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Detalhes do Projeto -->
+    <div class="modal-overlay" id="modal-projeto">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modal-titulo">Título do Projeto</h2>
+                <button class="modal-close" onclick="fecharModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-content">
+                <div class="projeto-imagem">
+                    <img id="modal-imagem" src="" alt="">
+                    <div class="projeto-badges">
+                        <span class="badge destaque" id="modal-badge-destaque">
+                            <i class="fas fa-star"></i>
+                            Projeto Destaque
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="projeto-info">
+                    <div class="projeto-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span id="modal-data">Data do projeto</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-tag"></i>
+                            <span id="modal-categoria">Categoria</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span id="modal-duracao">Duração</span>
+                        </div>
+                    </div>
+                    
+                    <div class="projeto-descricao">
+                        <h3>Descrição</h3>
+                        <p id="modal-descricao">Descrição detalhada do projeto</p>
+                    </div>
+                    
+                    <div class="projeto-funcionalidades">
+                        <h3>Funcionalidades Principais</h3>
+                        <ul id="modal-funcionalidades">
+                            <!-- Lista será preenchida dinamicamente -->
+                        </ul>
+                    </div>
+                    
+                    <div class="projeto-tecnologias">
+                        <h3>Tecnologias Utilizadas</h3>
+                        <div class="tecnologias-list" id="modal-tecnologias">
+                            <!-- Tags serão preenchidas dinamicamente -->
+                        </div>
+                    </div>
+                    
+                    <div class="projeto-desafios">
+                        <h3>Desafios e Soluções</h3>
+                        <p id="modal-desafios">Principais desafios enfrentados e como foram solucionados</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="projeto-links">
+                    <a id="modal-link-demo" href="#" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver Demonstração
+                    </a>
+                    <a id="modal-link-github" href="#" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i>
+                        Código Fonte
+                    </a>
+                    <a id="modal-link-detalhes" href="#" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        Mais Detalhes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-projetos">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Gostou dos meus projetos?</h2>
+                    <p>Vamos trabalhar juntos no seu próximo projeto!</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="./contato.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Vamos Conversar
+                    </a>
+                    <a href="../index.html#sobre" class="btn btn-secondary">
+                        <i class="fas fa-user"></i>
+                        Conheça Mais
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Giovanni Barbosa</h3>
+                    <p>Desenvolvedor Full-Stack & Designer</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="../index.html">Início</a>
+                    <a href="./projetos.html">Projetos</a>
+                    <a href="./galeria.html">Galeria</a>
+                    <a href="./certificados.html">Certificados</a>
+                    <a href="./contato.html">Contato</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Giovanni Barbosa. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- JavaScript Files -->
+    <script src="../assets/js/firebase-config.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/navegacao.js"></script>
+    <script src="../assets/js/projetos.js"></script>
+</body>
+</html>
